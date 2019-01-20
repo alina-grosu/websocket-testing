@@ -57,7 +57,7 @@ public class WebSocketPocTest {
         System.out.println(String.format(THREAD_MSG, "MultiCallTest", Thread.currentThread().getId()));
         socket.sendText("Foq").sendText("Feq").sendText("Fuq");
         WebSocketEventsRegistryPoller.pollForCondition(webSocketEventsRegistry, registry -> registry.getRegisteredTextMessages().size() == 3, 1000, 250);
-        Assert.assertEquals(webSocketEventsRegistry.getRegisteredTextMessages().stream().collect(Collectors.joining(" ")), "Foq Feq Fuq");
+        Assert.assertEquals(String.join(" ", webSocketEventsRegistry.getRegisteredTextMessages()), "Foq Feq Fuq");
     }
 
     @AfterClass
